@@ -4,50 +4,11 @@
   padding: 2rem;
   text-align: center;
 }
-.button{
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
 
-.container{
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-  text-align: center;
 
-}
-.weathercards{
-  width: 100%;
-  height: 100%;
-  gap:10px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-}
 
-.weathercard{
-  width:200px;
-  height:100px;
-  background-color:white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  color: black;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
 
-}
+
 
 .logo {
   height: 6em;
