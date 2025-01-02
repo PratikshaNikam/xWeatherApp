@@ -1,34 +1,79 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
+import styles from './App.module.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [weather, setWeather] = useState("");
+  const [city, setCity] = useState("");
+  //console.log(city)
+ // console.log(weather)
 
+ 
+
+  
+  const getWeather = async (city) => {
+    fetch(`http://api.weatherapi.com/v1/current.json?key=044b40b4c0cb473bbe283747250201&q=${city}`)
+      .then((res) => res.json())
+    .then((data)=>{
+      console.log(data.current.condition.text)
+      console.log(data.current.temp_c)
+      console.log(data.current.humidity)
+      console.log(data.current.wind_kph)
+
+      setWeather(data)
+    })
+    .catch(()=>{
+      alert("Failed to fetch weather data")
+    })
+
+
+
+
+  }
+   
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    
+      <div className={styles.container}>
+     
+      <input placeholder='Enter City Name' onChange={(e)=>{setCity(e.target.value)}}/>
+      <button className={styles.button} onClick={() => getWeather(city)}>Search</button>
+
+      {weather == '' ? (<h1>Loading...</h1>) : (
+        <div className={styles.subContainer}>
+          <div className={styles.card}>
+            <h3>Temperature </h3>
+            <p>{ weather.current.temp_c}&deg;C</p>
+          </div>
+
+          <div className={styles.card}> 
+            
+            <h3>Humidity</h3>
+            <p>{weather.current.humidity}%</p>
+          </div>
+          <div className={styles.card}>
+            <h3>Condition</h3>
+            <p>{weather.current.condition.text}</p>
+          
+          </div>
+          <div className={styles.card}> 
+            <h3>Wind Speed</h3>
+            <p>{weather.current.wind_kph}kph</p>
+          </div>
+          
+
+        </div>
+        
+      )}
+
+
+      
+      
+
+
+      
+</div>  
+    
   )
 }
 
